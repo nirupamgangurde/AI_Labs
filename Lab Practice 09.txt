@@ -1,0 +1,142 @@
+Question 01:
+
+class Bank:
+	def __init__(self,name,acc_no,acc_type,balance=0):
+		self.name = name
+		self.acc_no = acc_no
+		self.acc_type = acc_type
+		self.balance = balance
+
+	def deposit(self,amount):
+		if amount > 0:
+			self.balance += amount
+			print("Depositd Succesfully, Balance is:",self.balance)
+		else:
+			print("Please enter valid amount")
+
+	def withdraw(self, amount):
+		if amount > self.balance:
+			print("Insufficient balance!")
+		elif amount <= 0:
+			print("Please enter valid amount")
+		else: 
+			self.balance -= amount
+			print("withdraw successfull:",self.balance)
+
+	def display(self):
+		print("Name of account holder: ",self.name)
+		print("Account Number: ",self.acc_no)
+		print("Account Type: ",self.acc_type)
+		print("Account Balance: ",self.balance)
+
+accounts = {}
+	
+while True:
+	print(" 1. New Customer\n 2. Deposit\n 3. Withdrawal\n 4. Display\n 5. Exit")
+	ip = int(input("Enter your choice: "))
+	if ip == 1:
+		name = input("Enter your name: ")
+		acc_no = int(input("Enter the account No. : "))
+		acc_type = input("Enter the account type (Current/saving): ")
+		balance = float(input("Enter balance: "))
+		accounts[acc_no] = Bank(name,acc_no,acc_type,balance)
+		print("Account Created Successfully!!!")
+	elif ip ==2:
+		acc_no = int(input("Enter the account number: "))
+		if acc_no in accounts:
+			amount = int(input("Enter the amount you want to Deposite"))
+			accounts[acc_no].deposit(amount)
+		else:
+			print("Account number not fount in records")			
+	elif ip == 3:
+			acc_no = int(input("Enter Account Number: "))
+			if acc_no in accounts:
+				amount = float(input("Enter amount to withdraw: "))
+				accounts[acc_no].withdraw(amount)
+			else:
+				print("Account number not found in records")
+	elif ip == 4:
+        	acc_no = int(input("Enter Account Number: "))
+        	if acc_no in accounts:
+            		accounts[acc_no].display()
+        	else:
+            		print("Account number not fount in records") 
+	elif ip == 5:
+        	print("Thank you!!!")
+        	break
+	else:
+		print("Invalid choice! Please select a valid option.")
+
+-----------------------------------------------------------------------------------------------------------
+
+Question 02:
+
+class Staff:
+    def __init__(self, code, name):
+        self.code = code
+        self.name = name
+
+class Teacher(Staff):
+    def __init__(self, code, name, subject, publication):
+        super().__init__(code, name)
+        self.subject = subject
+        self.publication = publication
+
+class Typist(Staff):
+    def __init__(self, code, name, speed):
+        super().__init__(code, name)
+        self.speed = speed
+        
+class Officer(Staff):
+    def __init__(self, code, name, grade):
+        super().__init__(code, name)
+        self.grade = grade
+        
+class Regular(Typist):
+    def __init__(self, code, name, speed, salary):
+        super().__init__(code, name, speed)
+        self.salary = salary
+    
+class Casual(Typist):
+    def __init__(self, code, name, speed, daily_wages):
+        super().__init__(code, name, speed)
+        self.daily_wages = daily_wages
+
+
+while True:
+    print(" 1. Teacher\n 2. Officer\n 3. Regular Typist\n 4. Casual Typist\n 5. Exit")
+    ip = int(input("Enter your choice: "))
+    if ip == 1:
+        code = int(input("Enter Your Employee ID: "))
+        name = input("Enter Your Name: ")
+        subject = input("Enter Subject: ")
+        publication = input("Enter Publication: ")
+        teacher = Teacher(code, name, subject, publication)
+        print(f"Teacher Details\n ID: {teacher.code}\n Name : {teacher.name}\n Subject: {teacher.subject}\n Publication: {teacher.publication}")
+    elif ip == 2:
+        code = int(input("Enter Your Employee ID: "))
+        name = input("Enter Your Name: ")
+        grade = input("Enter Your Grade: ") 
+        officer = Officer(code, name, grade)
+        print(f"Officer Details\n ID: {officer.code}\n Name : {officer.name}\n Grade: {officer.grade}") 
+    elif ip == 3:
+        code = int(input("Enter Your Employee ID: "))
+        name = input("Enter Your Name: ")
+        speed = int(input("Enter Your Typing speed (WPM): "))
+        salary = input("Enter Your salary: ")
+        regular = Regular(code, name, speed, salary)
+        print(f"Regular Typist Details\n ID: {regular.code}\n Name : {regular.name}\n Speed (WPM): {regular.speed}\n Salary: {regular.salary}")
+    elif ip == 4:
+        code = int(input("Enter Your Employee ID: "))
+        name = input("Enter Your Name: ")
+        speed = int(input("Enter Your Typing speed (WPM): "))
+        daily_wages = int(input("Enter your daily wages: "))
+        casual = Casual(code, name, speed, daily_wages)
+        print(f"Casual Typist Details\n ID: {casual.code}\n Name : {casual.name}\n Speed (WPM): {casual.speed}\n Daily Wages: {casual.daily_wages}")
+    elif ip == 5:
+        print("Exiting program. Thank you!")
+        break
+    else:
+        print("Please enter valid input!!!")
+
+-----------------------------------------------------------------------------------------------------------------
