@@ -1,0 +1,180 @@
+Question 01:
+
+try:
+    x = 5/0
+    print(x)
+except:
+    print("can't divide by zero")
+
+-----------------------------------------------------------------------------------------------
+
+Question 02:
+
+try:
+    arr = [1,2,3,4,5,6,7,8,9,10]
+    print(arr[12])
+except:
+    print("Array index out of bound")
+
+-----------------------------------------------------------------------------------------------
+
+Question 03:
+
+import os
+os.chdir("/home/Nirupam/Desktop/CDAC/")
+
+try:
+    f = input("Enter file name: ")
+    with open (f,"r") as file:
+        content = file.read()
+        print(content)
+
+        val = int(content)
+        print("Numeric value from file is: ",content)
+except FileNotFoundError:
+    print("file not found please try again with different file")
+
+except ValueError:
+    print("File contains non numeric data")
+
+-----------------------------------------------------------------------------------------------
+
+Question 04:
+
+class InvalidAgeError(Exception):
+    def __init__(self, message):
+        pass
+def myage(age):
+    if age < 0 or age > 150:
+        raise InvalidAgeError("Age must be in between 0 to 150")
+    else:
+        print("Your age is: ",age)
+    
+try:
+    age=int(input("Enter Your age: "))
+    myage(age)
+except InvalidAgeError as e:
+    print(f"{e}")
+
+-----------------------------------------------------------------------------------------------
+
+Question 05:
+
+try:
+    one = int(input("Enter first digit: "))
+    two = int(input("Enter second digit: "))
+    div = one/two
+    print(div)
+except ZeroDivisionError:
+    print("Division by zero is not allowed.")
+except ValueError:
+    print("Please enter valid numeric value")
+else:
+    print(f"Result is : {div}")
+finally:
+    print("operation complete")
+
+-----------------------------------------------------------------------------------------------
+
+Question 06:
+
+try:
+    newstr = input("Enter string here: ")
+
+    if newstr == "":
+        raise TypeError("Input cannot be empty")
+    conv = int(newstr)
+except ValueError:
+    print("You are trying to convert string to integer")
+except TypeError as e:
+    print(f"{e}")
+    
+-----------------------------------------------------------------------------------------------
+
+Question 07:
+
+def innner_function():
+    raise ValueError("Invalid input in inner function")
+
+def outer_function():
+    try:
+        innner_function()
+    except ValueError as e:
+        raise RuntimeError("Error occured in outer FUnction") from e
+    
+try:
+    outer_function()
+except RuntimeError as e:
+    print(f"Caught an exception: {e}")
+    print(f"original cause: {e.__cause__}")
+
+-----------------------------------------------------------------------------------------------
+
+Question 08:
+
+try:
+    lst = [1,2,3,4,5,6,7,8,9,10]
+    dct = {"name": "Nirupam","city":"Nashik","State":"Maharashtra"}
+    print(lst[12])
+    print(dct["age"])
+except (IndexError, KeyError) as e:
+    print(f"{e}")
+
+-----------------------------------------------------------------------------------------------
+
+Question 09:
+
+import os
+os.chdir("/home/Nirupam/Desktop/CDAC")
+
+try:
+    newfile = input("Enter the file name: ")
+    with open(newfile,"r") as file:
+        for line in file:
+            try:
+                num = int(line.strip())
+                print(f"Converted number is : {num}")
+            except ValueError:
+                print(f"Ignoring invalid data")
+except FileNotFoundError:
+    print("Entered file not found")
+
+-----------------------------------------------------------------------------------------------
+
+Question 10:
+
+import os
+os.chdir("/home/Nirupam/Desktop/CDAC")
+
+try:
+    with open("new.txt","r") as file:
+        file.write("Trying to write file")
+except IOError as e:
+    print(f"{e}")
+
+-----------------------------------------------------------------------------------------------
+
+Question 11:
+
+try:
+    x = int(input("Enter the numeric value here: "))
+    if x < 0:
+        raise ValueError("x cannot be negative!")
+    print(f"{x} is valid number")
+except ValueError as e:
+    print(f"{e}")
+
+-----------------------------------------------------------------------------------------------
+
+Question 12:
+
+try:
+    x = input("Enter the numeric value here: ")
+    if not x.isdigit():
+        raise TypeError("X is not integer")
+except TypeError as e:
+    print(f"{e}")
+
+-----------------------------------------------------------------------------------------------
+
+
